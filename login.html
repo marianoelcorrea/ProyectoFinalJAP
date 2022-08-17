@@ -1,40 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en" >
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
   
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: rgb(248, 249, 250);
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Login E-commerce</title>
+  <link rel="stylesheet" href="css/login.css">
+
 </head>
-
 <body>
-  <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <script src="js/login.js"></script>
-</body>
 
+<div class="login-page">
+  <div class="form">
+    <div class="login-form">
+      <input id="email" type="text" placeholder="email"/>
+      <input id="password" type="password" placeholder="password"/>
+      <button onclick="login()" >login</button> 
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script  src="js/login.js"></script>
+  <!-- Se agrega para usar mensajes de alerta -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
 </html>
