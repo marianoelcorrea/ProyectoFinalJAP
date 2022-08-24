@@ -13,7 +13,9 @@ function login() {
            })
     } else {
         // se agrega variable de sesion para indicar que se logueo una persona
-        window.sessionStorage.setItem("logueado", true);
+        window.sessionStorage.setItem("logueado", true);  
+        // se guarda el email del usuario que logro ingresar - entrega 2
+        window.localStorage.setItem("email", email);
         // se redirecciona a index.html (pagina principal del sitio)
         window.location.href = "index.html";
    }

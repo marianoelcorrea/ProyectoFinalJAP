@@ -8,19 +8,20 @@ let currentProductsArray = [];
 document.addEventListener("DOMContentLoaded", function(e){
     // se obtiene la variable local de la categoria seleccionada
     let categoryId = localStorage.getItem("catID");
-    // si es la categoria 101 se muestran los productos, de lo contrario se muestra en construccion 
-    if( categoryId == 101) {
-        // obtiene los productos de la url brindada en la letra
-    getJSONData(PRODUCTS_101_URL).then(function(resultObj){
+    // Concateno las constantes de la URL con la categoria correspondiente
+    let productURL = PRODUCTS_URL + categoryId + EXT_TYPE;
+   // obtiene los productos de la url brindada en la letra
+    getJSONData(productURL).then(function(resultObj){
         if (resultObj.status === "ok"){
             // si la llamada fue exitosa se asigna el resultado a la variable currentProductsArray
             currentProductsArray = resultObj.data.products;
             showProductsList();
         }
     });
-   }
+   
 });
 
+// NO OLVIDARME DE DEJAR EL USUARIO FIJO EN TODAS LAS BARRAS DE NAVEGACION
 
 function showProductsList(){
 
