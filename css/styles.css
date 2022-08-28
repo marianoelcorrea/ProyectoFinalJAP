@@ -188,3 +188,9 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+ 
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+}
