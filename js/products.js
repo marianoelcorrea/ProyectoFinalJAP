@@ -16,7 +16,7 @@ let maxCount = undefined;
 document.addEventListener("DOMContentLoaded", function(e){
     // se obtiene la variable local de la categoria seleccionada
     let categoryId = localStorage.getItem("catID");
-    // Concateno las constantes de la URL con la categoria correspondiente
+    // Concateno las constantes de la URL con la categoria correspondiente - entrega 2
     let productURL = PRODUCTS_URL + categoryId + EXT_TYPE;
    // obtiene los productos de la url brindada en la letra
     getJSONData(productURL).then(function(resultObj){
