@@ -1,12 +1,12 @@
 // variable donde se guarda la respuesta del servicio
 let currentProductsArray = [];
 // variables para usar los filtros
-const ORDER_ASC_BY_NAME = "AZ";
-const ORDER_DESC_BY_NAME = "ZA";
-const ORDER_BY_SOLD_COUNT = "Cant.";
+const ORDER_ASC_BY_COST = "AZ";
+const ORDER_DESC_BY_COST = "ZA";
+const ORDER_BY_SOLD_COUNT = "Vendidos";
 let currentSortCriteria = undefined;
-let minCount = undefined;
-let maxCount = undefined;
+let minCost = undefined;
+let maxCost = undefined;
 
 
 // se usa como referencia categories.js y se adapta para products.js
@@ -37,46 +37,50 @@ document.addEventListener("DOMContentLoaded", function(e){
     // se agrega en el evento click de cada boton la llamada a la funcion que ordena y muestra los productos segun corresponda - entrega 2
 
     document.getElementById("sortAsc").addEventListener("click", function(){
-        sortAndShowProducts(ORDER_ASC_BY_NAME);
+        sortAndShowProducts(ORDER_ASC_BY_COST);
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){
-        sortAndShowProducts(ORDER_DESC_BY_NAME);
+        sortAndShowProducts(ORDER_DESC_BY_COST);
     });
 
-    document.getElementById("sortByCount").addEventListener("click", function(){
+    document.getElementById("sortBySoldCount").addEventListener("click", function(){
         sortAndShowProducts(ORDER_BY_SOLD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
-        document.getElementById("rangeFilterCountMin").value = "";
-        document.getElementById("rangeFilterCountMax").value = "";
+    document.getElementById("searchButton").addEventListener("click", function(){
+        showProductsList();
+    });
 
-        minCount = undefined;
-        maxCount = undefined;
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+        document.getElementById("rangeFilterCostMin").value = "";
+        document.getElementById("rangeFilterCostMax").value = "";
+
+        minCost = undefined;
+        maxCost = undefined;
 
         showProductsList();
     });
 
     // Se agrega el evento click al boton de filtrar por min y max de cantidad, asigno los valores ingresados a las variables minCount y maxCount y llamo a la funcion mostrar productos (showProductsList) - entrega 2
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+    document.getElementById("rangeFilterCost").addEventListener("click", function(){
         
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
+        minCost = document.getElementById("rangeFilterCostMin").value;
+        maxCost = document.getElementById("rangeFilterCostMax").value;
 
-        if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-            minCount = parseInt(minCount);
+        if ((minCost != undefined) && (minCost != "") && (parseInt(minCost)) >= 0){
+            minCost = parseInt(minCost);
         }
         else{
-            minCount = undefined;
+            minCost = undefined;
         }
 
-        if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-            maxCount = parseInt(maxCount);
+        if ((maxCost != undefined) && (maxCost != "") && (parseInt(maxCost)) >= 0){
+            maxCost = parseInt(maxCost);
         }
         else{
-            maxCount = undefined;
+            maxCost = undefined;
         }
 
         showProductsList();
@@ -95,10 +99,15 @@ function showProductsList(){
     for(let i = 0; i < currentProductsArray.length; i++){
         let product = currentProductsArray[i];
 
-        // Se agrega if para validar si se asigno valor a minCount y maxCount, en el caso de que si, se pregunta uno a uno, si la cantidad vendida entra en el rango filtrado - entrega 2
+        // Se agrega if para validar si se asigno valor a minCost y maxCost, en el caso de que si, se pregunta uno a uno, si la cantidad vendida entra en el rango filtrado - entrega 2
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(product.soldCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(product.soldCount) <= maxCount))){
+        if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
+            ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
+                
+                // Se guarda en la variable lo que el usuario ingresa en el buscador
+                let textoUsuario = document.getElementById("texto").value;
+                // Se agrega un if para validar si lo que el usuario ingreso en el buscador esta en el nombre del producto o en la descripcion
+                if(product.name.toUpperCase().includes(textoUsuario.toUpperCase()) || product.description.toUpperCase().includes(textoUsuario.toUpperCase())){
 
             // por cada producto se agrega un item de grupo a la lista html
             htmlContentToAppend += `
@@ -117,7 +126,7 @@ function showProductsList(){
                 </div>
             </div>
             `
-            }
+            }}
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
 }
@@ -126,17 +135,19 @@ function showProductsList(){
 
 function sortProducts(criteria, array){
     let result = [];
-    if (criteria === ORDER_ASC_BY_NAME)
-    {
+    if (criteria === ORDER_ASC_BY_COST)
+
+    // Uso el sort para ordenar la lista, compara a y b - entrega 2 (pasar a block de notas)
+    { 
         result = array.sort(function(a, b) {
-            if ( a.name < b.name ){ return -1; }
-            if ( a.name > b.name ){ return 1; }
+            if ( a.cost < b.cost ){ return -1; }
+            if ( a.cost > b.cost ){ return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_DESC_BY_NAME){
+    }else if (criteria === ORDER_DESC_BY_COST){
         result = array.sort(function(a, b) {
-            if ( a.name > b.name ){ return -1; }
-            if ( a.name < b.name ){ return 1; }
+            if ( a.cost > b.cost ){ return -1; }
+            if ( a.cost < b.cost ){ return 1; }
             return 0;
         });
     }else if (criteria === ORDER_BY_SOLD_COUNT){
