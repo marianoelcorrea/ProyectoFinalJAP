@@ -1,8 +1,8 @@
 // variable donde se guarda la respuesta del servicio
 let currentProductsArray = [];
 // variables para usar los filtros
-const ORDER_ASC_BY_COST = "AZ";
-const ORDER_DESC_BY_COST = "ZA";
+const ORDER_ASC_BY_COST = "ASC";
+const ORDER_DESC_BY_COST = "DESC";
 const ORDER_BY_SOLD_COUNT = "Vendidos";
 let currentSortCriteria = undefined;
 let minCost = undefined;
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         showProductsList();
     });
 
-    // Se agrega el evento click al boton de filtrar por min y max de cantidad, asigno los valores ingresados a las variables minCount y maxCount y llamo a la funcion mostrar productos (showProductsList) - entrega 2
+    // Se agrega el evento click al boton de filtrar por min y max, asigno los valores ingresados a las variables minCost y maxCost y llamo a la funcion mostrar productos (showProductsList) - entrega 2
 
     document.getElementById("rangeFilterCost").addEventListener("click", function(){
         
@@ -104,7 +104,7 @@ function showProductsList(){
         if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
                 
-                // Se guarda en la variable lo que el usuario ingresa en el buscador
+                // Se guarda en la variable lo que el usuario ingresa en el buscador DESAFIATE
                 let textoUsuario = document.getElementById("texto").value;
                 // Se agrega un if para validar si lo que el usuario ingreso en el buscador esta en el nombre del producto o en la descripcion
                 if(product.name.toUpperCase().includes(textoUsuario.toUpperCase()) || product.description.toUpperCase().includes(textoUsuario.toUpperCase())){
