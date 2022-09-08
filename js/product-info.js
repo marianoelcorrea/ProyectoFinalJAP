@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(productInfoURL).then(function(resultObj){
         if (resultObj.status === "ok"){
             // si la llamada fue exitosa se asigna el resultado a la variable currentProduct
-        fgfht = resultObj.data;
-            console.log(productInfo)
+        productInfo = resultObj.data;
+        showProductInfo();  
         }
     })});
 
@@ -30,9 +30,10 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         // se crea una variable para ir escribiendo el html de la lista 
         let htmlContentToAppend = "";
-
-        for(let i = 0; i < product.images.length; i++){    // product.images.length
-            let product = product.images[i];  // sustituyo por product.images
+        //Lo uso para recorrer las imagenes
+        for(let i = 0; i < productInfo.images.length; i++){    
+            // guardo en otra variable cada imagen que estoy recorriendo
+            let image = productInfo.images[i];  
        
                 // por cada producto se agrega un item de grupo a la lista html
                 
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 <div onclick="setProdID(${productInfo.id})" class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
                         <div class="col-3">
-                            <img src="${productInfo.image}" alt="${productInfo.description}" class="img-thumbnail">
+                            <img src="${image}" alt="${productInfo.description}" class="img-thumbnail">
                         </div>
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
@@ -52,8 +53,8 @@ document.addEventListener("DOMContentLoaded", function(e){
                     </div>
                 </div>
                 `
-                }
-
+        }
+            // Con esta funcion agarro un elemento del html por su ID, en este caso es un div, y modifico el texto que se muestra dentro del mismo en el html
             document.getElementById("prod-info-container").innerHTML = htmlContentToAppend;
             
     }
