@@ -96,8 +96,8 @@ function showProductsList(){
     // se crea una variable para ir escribiendo el html de la lista 
     let htmlContentToAppend = "";
     // se recorre la misma variable
-    for(let i = 0; i < currentProductsArray.length; i++){
-        let product = currentProductsArray[i];
+    for(let i = 0; i < currentProductsArray.length; i++){    // product.images.length
+        let product = currentProductsArray[i];  // sustituyo por product.images
 
         // Se agrega if para validar si se asigno valor a minCost y maxCost, en el caso de que si, se pregunta uno a uno, si la cantidad vendida entra en el rango filtrado - entrega 2
 
@@ -177,6 +177,8 @@ function sortAndShowProducts(sortCriteria, productsArray){
     showProductsList();
 }
 
+
+// Con esta funcion se guarda en localStorage y se redirige a product-info.html  - entrega 3  ej1
 function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
