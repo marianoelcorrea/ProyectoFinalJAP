@@ -111,7 +111,7 @@ function showProductsList(){
 
             // por cada producto se agrega un item de grupo a la lista html
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -177,3 +177,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
     showProductsList();
 }
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
