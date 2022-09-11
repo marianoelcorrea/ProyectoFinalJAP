@@ -5,29 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Estrellas</title>
   <script src="https://kit.fontawesome.com/53ba3dc50a.js" crossorigin="anonymous"></script>
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 
   <style>
     .checked {
-        color: pink; 
+        color: pink;
     }
   </style>
 </head>
 <body>
 
-  <div class="form-floating">
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-    <label for="floatingTextarea2">Comments</label>
-  </div>
+  
+   <p>Comentar</p>
+   <p>Tu opinion:</p>
+    
+    
+    
 
-Selección: <select id="puntaje">
+Tu puntuación: 
+<br>
+<select id="puntaje">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
-</select>
-<br><br>
-Puntaje: <span id="calif"></span>
+</select>  <span id="calif"></span>
+<br>
+
+
+
+
+
 
 <script>
     function puntuacion(puntos){
@@ -36,7 +47,7 @@ Puntaje: <span id="calif"></span>
         if(i<=puntos){
           
             estrellas += `<i class="fa fa-star checked"></i>`; // colocar icono de estrella llena 
-        } else {estrellas += `<i class="fa fa-star"></i>`; // icono contorno estrella
+        } else {estrellas += `<i class="far fa-star"></i>`; // icono contorno estrella
 
         }
       }
@@ -48,6 +59,9 @@ Puntaje: <span id="calif"></span>
 
     })
 </script>
+
+<br>
+<input class="boton" type="submit" value="Enviar">
 
 
 
