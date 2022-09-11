@@ -4,14 +4,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Estrellas</title>
-  <link href="/css/font-awesone.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/53ba3dc50a.js" crossorigin="anonymous"></script>
+
   <style>
     .checked {
-        color: orange; 
+        color: pink; 
     }
   </style>
 </head>
 <body>
+
+  <div class="form-floating">
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+    <label for="floatingTextarea2">Comments</label>
+  </div>
+
 Selección: <select id="puntaje">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -27,8 +34,9 @@ Puntaje: <span id="calif"></span>
         let estrellas= '';
       for(let i = 1; i <= 5; i++) {
         if(i<=puntos){
-            estrellas += `<i class="fas fa-star checked"></i>`; // colocar icono de estrella llena 
-        } else {estrellas += `<i class="far fa-star nada"></i>`; // icono contorno estrella
+          
+            estrellas += `<i class="fa fa-star checked"></i>`; // colocar icono de estrella llena 
+        } else {estrellas += `<i class="fa fa-star"></i>`; // icono contorno estrella
 
         }
       }
