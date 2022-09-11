@@ -68,3 +68,22 @@ function showProductInfo() {
     document.getElementById("prod-info-container").innerHTML = htmlContentToAppend;
 
 }
+
+  // Funcion que permite realizar la puntuacion mendiante asignacion de estrelas  - entrega 3 ej3
+    function puntuacion(puntos){
+        let estrellas= '';
+      for(let i = 1; i <= 5; i++) {
+        if(i<=puntos){
+          
+            estrellas += `<i class="fa fa-star checked"></i>`; 
+        } else {estrellas += `<i class="far fa-star"></i>`; 
+
+        }
+      }
+      document.getElementById("calif").innerHTML=estrellas;
+    };
+
+    document.getElementById("puntaje").addEventListener('change', function(){
+        puntuacion(document.getElementById('puntaje').value);
+
+    })

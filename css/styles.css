@@ -194,3 +194,11 @@ a.custom-card:hover {
   pointer-events: none;
   cursor: default;
 }
+
+.checked {
+  color: pink;
+}
+
+#comentarios {
+  width: 500px;
+}
