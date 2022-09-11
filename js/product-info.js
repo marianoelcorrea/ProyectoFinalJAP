@@ -4,7 +4,8 @@ let emailNavBar = document.getElementById("email");
 let emailValor = window.localStorage.getItem("email");
 // Se asigna al valor que se muestra en pantalla del "a" el email previamente guardado - entrega 2
 emailNavBar.innerHTML = emailValor;
-
+// variable donde se guarda la puntuacion actual seleccionada entrega 3 
+let puntuacionActual = 0;
 
 // cuando terminan de cargar los recursos de la pagina se dispara esta funcion - Primer evento -  entrega 3  ej1
 let productInfo = null;
@@ -70,7 +71,11 @@ function showProductInfo() {
 }
 
   // Funcion que permite realizar la puntuacion mendiante asignacion de estrelas  - entrega 3 ej3
+
+
     function puntuacion(puntos){
+      puntuacionActual = puntos;
+
         let estrellas= '';
       for(let i = 1; i <= 5; i++) {
         if(i<=puntos){
@@ -87,3 +92,69 @@ function showProductInfo() {
         puntuacion(document.getElementById('puntaje').value);
 
     })
+
+
+let cometarios = [];
+
+function agregar(){
+
+    let item = document.getElementById("item");
+    let nuevoComentario = obtenerComentario();
+
+    comentarios.push(item.value);
+    localStorage.setItem("datos", JSON.stringify(comentarios));
+    item.value= ""; //para borrar lo del input
+    mostrarItem(comentarios);
+}
+
+function obtenerComentario() {
+
+  let comentario = {
+    usuario:"", 
+    fechaHora: "",
+    puntuacion: 0,
+    texto:""
+  };
+
+  let usuario = localStorage.getItem("email");
+  comentario.usuario = usuario;
+
+  let fechaHora = new Date();
+  let fechaString = fechaHora.getFullYear() + "-" + fechaHora.getMonth() + "-" + fechaHora.getDay() + " " + 
+  fechaHora.getHours() + ":" + fechaHora.getMinutes() + ":" + fechaHora.getSeconds();
+  comentario.fechaHora = fechaString;
+ 
+  comentario.puntuacion = puntuacionActual;
+
+  comentario.texto = document.getElementById("comentariostxt").innerHTML;
+  return comentario;
+}
+
+
+function mostrarItem(array){
+    let items ="";
+    for(let item of array){
+        items += '<li class="list-group-item">'+ item + '</li>'
+    }
+    document.getElementById("contenedor").innerHTML = items;
+}
+function limpiar(){
+    lista.splice(0, lista.length);
+    mostrarItem(lista);
+    localStorage.removeItem("datos");
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    lista = JSON.parse(localStorage.getItem("datos"));
+    if(lista != null){
+        mostrarItem(lista);
+    }else{
+        lista = [];
+    }
+        document.getElementById("agregar").addEventListener("click", ()=>{
+        agregar();
+    })
+    document.getElementById("limpiar").addEventListener("click", ()=>{
+        limpiar();
+    })
+})
