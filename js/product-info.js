@@ -177,11 +177,11 @@ function mostrarComentarios(){
 
       comentariosHtml +=  `<li class="list-group-item">
         <div class="row justify-content-start">
-        <p class="col-2">${coment.user} - ${coment.dateTime} - </p> <span class="col-2" id="${idCalificacion}">`;
+        <p class="col-4"> <b>${coment.user}</b>-${coment.dateTime} - </p> <span class="col-4" id="${idCalificacion}">`;
         
       comentariosHtml += escribirEstrellas(coment.score);
       comentariosHtml +=`</span>
-        <div class="row">${coment.description}</div>
+        <div>${coment.description}</div>
       </div>
      </li>`;
     }
