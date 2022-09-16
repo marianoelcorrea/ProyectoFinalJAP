@@ -23,6 +23,35 @@ document.addEventListener("DOMContentLoaded", function (e) {
             showProductInfo();
         }
     })
+
+    // siempre que levanto la pagina se buscan los comentarios de los productos
+
+    let productCommentInfoURL = PRODUCT_INFO_COMMENTS_URL + productId + EXT_TYPE;
+    
+    getJSONData(productCommentInfoURL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            
+            comentarios = resultObj.data;
+            mostrarComentarios();
+        }
+    })
+ 
+    let lista = localStorage.getItem("listaComentarios"); 
+
+       if(lista == undefined) {
+        lista = JSON.stringify(comentarios);
+        localStorage.setItem("listaComentarios", lista);
+        }
+
+   /* comentarios = JSON.parse(lista); */
+     //  console.log(comentarios);
+     //   mostrarComentarios();
+   /*
+        document.getElementById("agregar").addEventListener("click", ()=>{
+        agregar();
+    }) */
+
+
 });
 
 
@@ -73,10 +102,16 @@ function showProductInfo() {
   // Funcion que permite realizar la puntuacion mendiante asignacion de estrelas  - entrega 3 ej3
 
 
-    function puntuacion(puntos){
+    function puntuacion(puntos, ubicacion){
       puntuacionActual = puntos;
 
-        let estrellas= '';
+       let estrellas = escribirEstrellas(puntos);
+      document.getElementById(ubicacion).innerHTML=estrellas;
+    };
+
+    function escribirEstrellas(puntos)
+    {
+      let estrellas= '';
       for(let i = 1; i <= 5; i++) {
         if(i<=puntos){
           
@@ -85,76 +120,75 @@ function showProductInfo() {
 
         }
       }
-      document.getElementById("calif").innerHTML=estrellas;
-    };
+      return estrellas;
+    }
 
     document.getElementById("puntaje").addEventListener('change', function(){
-        puntuacion(document.getElementById('puntaje').value);
+        puntuacion(document.getElementById('puntaje').value, "calif");
 
     })
 
 
-let cometarios = [];
+let comentarios = [];
 
 function agregar(){
 
-    let item = document.getElementById("item");
     let nuevoComentario = obtenerComentario();
-
-    comentarios.push(item.value);
+    
+    comentarios.push(nuevoComentario);
     localStorage.setItem("datos", JSON.stringify(comentarios));
-    item.value= ""; //para borrar lo del input
-    mostrarItem(comentarios);
+    mostrarComentarios();
 }
 
 function obtenerComentario() {
 
   let comentario = {
-    usuario:"", 
-    fechaHora: "",
-    puntuacion: 0,
-    texto:""
+    user:"", 
+    dateTime: "",
+    score: 0,
+    description:"",
+    product: 0
   };
 
   let usuario = localStorage.getItem("email");
-  comentario.usuario = usuario;
+  comentario.user = usuario;
 
   let fechaHora = new Date();
   let fechaString = fechaHora.getFullYear() + "-" + fechaHora.getMonth() + "-" + fechaHora.getDay() + " " + 
   fechaHora.getHours() + ":" + fechaHora.getMinutes() + ":" + fechaHora.getSeconds();
-  comentario.fechaHora = fechaString;
+  //comentario.dateTime = fechaString;
+  comentario.dateTime = fechaHora;
  
-  comentario.puntuacion = puntuacionActual;
+  comentario.score = puntuacionActual;
 
-  comentario.texto = document.getElementById("comentariostxt").innerHTML;
+  comentario.description = document.getElementById("comentariostxt").value;
+  document.getElementById("comentariostxt").value = "";
   return comentario;
 }
 
 
-function mostrarItem(array){
-    let items ="";
-    for(let item of array){
-        items += '<li class="list-group-item">'+ item + '</li>'
-    }
-    document.getElementById("contenedor").innerHTML = items;
-}
-function limpiar(){
-    lista.splice(0, lista.length);
-    mostrarItem(lista);
-    localStorage.removeItem("datos");
-}
+function mostrarComentarios(){
+  console.log(comentarios);
+    let comentariosHtml ="";    
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    lista = JSON.parse(localStorage.getItem("datos"));
-    if(lista != null){
-        mostrarItem(lista);
-    }else{
-        lista = [];
+    for(let coment of comentarios){
+      
+      let idCalificacion = "calif" + coment.user + coment.dateTime;
+
+      comentariosHtml +=  `<li class="list-group-item">
+        <div class="row justify-content-start">
+        <p class="col-2">${coment.user} - ${coment.dateTime} - </p> <span class="col-2" id="${idCalificacion}">`;
+        
+      comentariosHtml += escribirEstrellas(coment.score);
+      comentariosHtml +=`</span>
+        <div class="row">${coment.description}</div>
+      </div>
+     </li>`;
     }
-        document.getElementById("agregar").addEventListener("click", ()=>{
-        agregar();
-    })
-    document.getElementById("limpiar").addEventListener("click", ()=>{
-        limpiar();
-    })
-})
+  
+    document.getElementById("contenedor").innerHTML = comentariosHtml;
+  }
+
+
+
+
