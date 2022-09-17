@@ -178,7 +178,7 @@ function sortAndShowProducts(sortCriteria, productsArray){
 }
 
 
-// Con esta funcion se guarda en localStorage y se redirige a product-info.html  - entrega 3  ej1
+// Con esta funcion se guarda en localStorage y se redirige a product-info.html  - entrega 3 paso 1 ej1
 function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
