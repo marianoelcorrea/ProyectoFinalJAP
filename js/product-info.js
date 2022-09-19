@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if(lista == undefined) {
 
       let productCommentInfoURL = PRODUCT_INFO_COMMENTS_URL + productId + EXT_TYPE;
-    
+
+     // Se consume el servicio que trae el JSON
       getJSONData(productCommentInfoURL).then(function (resultObj) {
           if (resultObj.status === "ok") {
               
@@ -72,6 +73,7 @@ function enviar(){
 
   mostrarComentarios();
 }
+
 //Funcion creada para obtener comentario - entrega 3  ej 4
 function obtenerComentario() {
   // Se crea un objeto de comentario vacio
