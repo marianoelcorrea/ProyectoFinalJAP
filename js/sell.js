@@ -28,10 +28,24 @@ function updateTotalCosts(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+   
+    //Entrega 4 ej 2
+    let logueado = window.sessionStorage.getItem("logueado");
+    // si la variable es null significa que nadie hizo login
+    if(logueado == null) {
+    // si nadie hizo login se direcciona a dicha pagina
+        window.location = "login.html";
+    }
+
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
         updateTotalCosts();
     });
+
+    //Se agrega evento click al boton cerrar sesion
+   document.getElementById("cerrarSesion").addEventListener("click", function(){
+    cerrarSesion();
+});
 
     // Se obtiene el "a" agregado en index.html, quedando guardado en la variable emailNavBar - entrega 2
     let emailNavBar = document.getElementById("email");

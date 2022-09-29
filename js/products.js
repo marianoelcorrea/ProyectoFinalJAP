@@ -14,6 +14,14 @@ let maxCost = undefined;
 // cuando terminan de cargar los recursos de la pagina se dispara esta funcion - Primer evento
 
 document.addEventListener("DOMContentLoaded", function(e){
+     
+    let logueado = window.sessionStorage.getItem("logueado");
+    // si la variable es null significa que nadie hizo login
+    if(logueado == null) {
+    // si nadie hizo login se direcciona a dicha pagina
+        window.location = "login.html";
+    }
+
     // se obtiene la variable local de la categoria seleccionada
     let categoryId = localStorage.getItem("catID");
     // Concateno las constantes de la URL con la categoria correspondiente - entrega 2
@@ -26,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductsList();
         }
     });
+
+    //Se agrega evento click al boton cerrar sesion
+   document.getElementById("cerrarSesion").addEventListener("click", function(){
+    cerrarSesion();
+});
+
     // Se obtiene el "a" agregado en index.html, quedando guardado en la variable emailNavBar - entrega 2
     let emailNavBar = document.getElementById("email");
     // Se busca el valor (email) guardado anteriormente en localStorage en login.js - entrega 2 

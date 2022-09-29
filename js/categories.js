@@ -88,6 +88,15 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    
+    //Entrega 4 ej 2
+    let logueado = window.sessionStorage.getItem("logueado");
+    // si la variable es null significa que nadie hizo login
+    if(logueado == null) {
+    // si nadie hizo login se direcciona a dicha pagina
+        window.location = "login.html";
+    }
+
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
@@ -103,6 +112,10 @@ document.addEventListener("DOMContentLoaded", function(e){
      // Se asigna al valor que se muestra en pantalla del "a" el email previamente guardado - entrega 2
      emailNavBar.innerHTML = emailValor;
 
+     //Se agrega evento click al boton cerrar sesion - entrega 4 ej 2
+   document.getElementById("cerrarSesion").addEventListener("click", function(){
+    cerrarSesion();
+});
 
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);

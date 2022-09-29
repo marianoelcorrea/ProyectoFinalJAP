@@ -202,3 +202,7 @@ a.custom-card:hover {
 #comentariostxt {
   width: 500px;
 }
+
+.card {
+  margin-right: 10px;
+}

@@ -40,3 +40,15 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+
+//Funcion creada para creada para cerrar sesion
+let cerrarSesion = function() {
+  //Remueve un bool que indica si alguien esta logueado o no
+  window.sessionStorage.removeItem("logueado");
+ //Remueve el usuario logueado
+  window.localStorage.removeItem("email");
+ //Se direcciona a la pagina de login para que pueda volver a ingresar
+  window.location.href = "login.html";
+
+}

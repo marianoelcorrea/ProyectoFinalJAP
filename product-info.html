@@ -37,7 +37,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><a class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+              <li><a class="dropdown-item"id="cerrarSesion">Cerrar sesión</a></li>
             </ul>
           </div>
         </ul>
@@ -56,31 +56,44 @@
   <br>
 
  <!-- Se agrega div para ingresar comentarios  - entrega 3 ej 3 -->
-  <div class="container">
+ <div class="container">
    <p>Comentarios</p>
    <div class="border rounded-3 cont">
     <ul class="list-group" id="contenedor">
       <li class="list-group-item">
      </li>
     </ul>
-  </div>
+   </div>
    <br>
    <p>Comentar</p>
    <p>Tu opinion:</p>
    <textarea id="comentariostxt"></textarea>
    <br>
-<!-- Seccion para puntuar los productos  -entrega 3 ej 3 -->
-Tu puntuación: 
-<br>
-<select id="puntaje">
+   <!-- Seccion para puntuar los productos  -entrega 3 ej 3 -->
+   Tu puntuación: 
+   <br>
+   <select id="puntaje">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
-</select>  <span id="calif"></span>
-<br>
-<input class="boton" id="enviar" type="submit" value="Enviar">
+   </select>  <span id="calif"></span>
+    <br>
+   <input class="boton" id="enviar" type="submit" value="Enviar">
+ </div>
+ 
+ <br>
+
+  <!-- Se agrega div para mostrar productos relacionados-->
+   
+  <div class="container">
+    <p>Productos relacionados</p>
+    <div class="row">
+      <!-- se agrega el div donde se cargara la informacion de los productos a mostrar  entrega 3 - ej2 -->
+      <div class="list-group" id="productos-relacionados">
+      </div>
+    </div>
   </div>
   <footer class="text-muted">
     <div class="container">

@@ -15,6 +15,14 @@ let productInfo = null;
 // cuando terminan de cargar los recursos de la pagina se dispara esta funcion - Primer evento, para todas las entregas 
 
 document.addEventListener("DOMContentLoaded", function (e) {
+
+  //Entrega 4 ej 2
+  let logueado = window.sessionStorage.getItem("logueado");
+  // si la variable es null significa que nadie hizo login
+  if(logueado == null) {
+  // si nadie hizo login se direcciona a dicha pagina
+      window.location = "login.html";
+  }
     // se obtiene la variable local de la categoria seleccionada
     productId = localStorage.getItem("prodID");
     // Concateno las constantes de la URL con el productID seleccionado - entrega 3 paso 2 ej 1
@@ -26,8 +34,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
             productInfo = resultObj.data;
             //Se muestran los detalles de cada producto - entrega 3 ej2 
             showProductInfo();
+            productosRelacionados();
+            productosRelacionados2();
         }
     })
+
+    //Se agrega evento click al boton cerrar sesion
+   document.getElementById("cerrarSesion").addEventListener("click", function(){
+    cerrarSesion();
+});
+
     
     // Se crea variable para llamar a la lista de comentarios del localStorage, se concateno el productID para separar listas segun producto - entrega 3 ej 3
     let lista = localStorage.getItem("listaComentarios_" + productId); 
@@ -219,4 +235,35 @@ function mostrarComentarios(){
     // Se agrega toda la informacion a mostrar en el html 
     document.getElementById("contenedor").innerHTML = comentariosHtml;
   }
+
+  function productosRelacionados() {
+
+    let htmlContentToAppend = `<div class="row">`;
+     
+
+    for (let i = 0; i < productInfo.relatedProducts.length; i++) {
+      // guardo en otra variable cada imagen que estoy recorriendo
+      let prodRelacionados = productInfo.relatedProducts[i];
+
+      // por cada imagen se agrega un div a la lista html
+
+      htmlContentToAppend += `
+                      
+                     <div onclick="setProdID(${prodRelacionados.id})" class="col-3 cursor-active card">
+                        <img src="${prodRelacionados.image}" class="card-img-top">
+                        <p>${prodRelacionados.name}</p>
+                      </div>
+              `
+  }
+  htmlContentToAppend += `</div>`
+  
+  document.getElementById("productos-relacionados").innerHTML = htmlContentToAppend;
+
+  }
+
+ // Con esta funcion se guarda en localStorage y se redirige a product-info.html  - entrega 4 ej1
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
 
