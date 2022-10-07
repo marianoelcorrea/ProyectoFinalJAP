@@ -20,3 +20,21 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 });
    
+
+let cartURL = CART_INFO_URL + USER_ID + EXT_TYPE;
+let cartInfo;
+
+
+document.addEventListener("DOMContentLoaded", function(e){
+getJSONData(cartURL).then(function (resultObj) {
+
+    if (resultObj.status === "ok") {
+         cartInfo = resultObj.data;     
+    }
+})
+});
+
+
+
+
+
