@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             //Se muestran los detalles de cada producto - entrega 3 ej2 
             showProductInfo();
             productosRelacionados();
-            productosRelacionados2();
+           
         }
     })
 

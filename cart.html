@@ -66,20 +66,8 @@
                                 <th>Total</th>
                             </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td>
-                                    <td><strong>Product 1</strong></td>
-                                    <td>
-                                    <div class="row">
-                                        <input class="col-3" type="text"  id="cantidad" value="1">
-                                        <a href="#" class="btn btn-primary col-1"><i class="fa fa-trash-o"></i></a>
-                                      </div>
-                                    </td>
-                                    <td>$54.00</td>
-                                    <td>$54.00</td>
-                                </tr>
-                                
+                            <tbody id="contenedor">
+                            </tbody> 
                                 <tr>
                                     <td colspan="8">&nbsp;</td>
                                 </tr>
@@ -87,18 +75,21 @@
                                 <tr>
                                   <td colspan="3">&nbsp;</td>
                                     <td class="text-right">Total Compras</td>
-                                    <td>$86.00</td>
+                                    <td id="totalCompras"></td>
                                 </tr>
                                 <tr>
                                   <td colspan="3">&nbsp;</td>
                                     <td  class="text-right">Total Envio</td>
-                                    <td>$2.00</td>
+                                    <td id="totalEnvios">-</td>
                                 </tr>
                                 <tr>
                                   <td colspan="3">&nbsp;</td>
                                     <td  class="text-right"><strong>Total</strong></td>
-                                    <td>$88.00</td>
+                                    <td id="total"></td>
                                 </tr>
+
+                              
+                                <!-- entrega 5 ej 2-->
 
                                 <tr>
                                   <td colspan="8">&nbsp;</td>
@@ -132,7 +123,7 @@
 
                                 
 
-                              </tbody>
+                              
                         </table>
                     </div>
                 </div>
