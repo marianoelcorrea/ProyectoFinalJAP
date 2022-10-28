@@ -2,6 +2,9 @@
 let cartURL = CART_INFO_URL + USER_ID + EXT_TYPE;
 // Se guarda en variable la informacion del carrito entrega 5
 let cartInfo;   
+//Al seleccionar el radioButtons se modifica esta variable y despues se utiliza en calcularTotales - entrega 6 ejercicio 1 
+let porcentajeEnvioActual = 0;
+
     
 document.addEventListener("DOMContentLoaded", function(e){
     //Entrega 4 ej 2
@@ -35,6 +38,20 @@ document.addEventListener("DOMContentLoaded", function(e){
    document.getElementById("cerrarSesion").addEventListener("click", function(){
     cerrarSesion();
 });
+
+
+ // entrega 6 ejercicio 1
+ let radioButtons = document.getElementsByClassName("radio");
+
+ for(let button of radioButtons) {
+    
+    button.addEventListener("click", function(){
+        porcentajeEnvioActual = button.value;
+        calcularTotales();
+    }
+)}
+
+
 });
    
 
@@ -83,7 +100,7 @@ function cantidadModificada(productoID) {
 }
 
 // entrega 5
-function calcularTotales() {
+function calcularTotalCompras(){
     
     // Se transforma el arreglo de articulos a uno de subtotales
     let subTotales = cartInfo.articles.map(x => x.unitCost * x.count);
@@ -91,9 +108,30 @@ function calcularTotales() {
     let total = subTotales.reduce((a, b) => a + b, 0);
     // Se agarra como referencia el primer art para sacar la moneda
     let primerArticulo = cartInfo.articles[0];
+    
+    document.getElementById("totalCompras").innerHTML = "USD " + total;
+    return total;
+    
+}
 
-    document.getElementById("totalCompras").innerHTML = primerArticulo.currency + " " + total;
-    document.getElementById("total").innerHTML = primerArticulo.currency + " " + total;
+
+function calcularEnvios(){
+  let totalCompras = calcularTotalCompras();
+  let envio =  totalCompras*porcentajeEnvioActual/100;
+  document.getElementById("totalEnvios").innerHTML = "USD " + envio;
+  return envio;
+}
+
+function calcularTotales(){
+  
+ let totalCompras = calcularTotalCompras();
+ let envio = calcularEnvios();
+ let total = totalCompras + envio;
+
+
+ document.getElementById("total").innerHTML = "USD " + total;
+ return totalCompras + envio;
+
 }
 
 
