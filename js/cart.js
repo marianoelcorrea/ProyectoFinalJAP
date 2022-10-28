@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     //Se agrega evento click al boton cerrar sesion
    document.getElementById("cerrarSesion").addEventListener("click", function(){
     cerrarSesion();
-});
+
+ });
 
 
  // entrega 6 ejercicio 1
@@ -49,8 +50,12 @@ document.addEventListener("DOMContentLoaded", function(e){
         porcentajeEnvioActual = button.value;
         calcularTotales();
     }
-)}
-
+ )}
+ 
+ // entrega 6 ej 2
+ document.getElementById("rbTarjeta").addEventListener("change", function() {seleccionarMetodoDePago("tarjeta")});
+ document.getElementById("rbTransferencia").addEventListener("change", function() {seleccionarMetodoDePago("transferencia")});
+ 
 
 });
    
@@ -99,18 +104,21 @@ function cantidadModificada(productoID) {
 
 }
 
-// entrega 5
+// entrega 5 -- la modifique para la entrega 6 ya que me quedaba mas facil hacer la parte de la moneda con un for
 function calcularTotalCompras(){
     
-    // Se transforma el arreglo de articulos a uno de subtotales
-    let subTotales = cartInfo.articles.map(x => x.unitCost * x.count);
-    // Se suman todos los subtotales
-    let total = subTotales.reduce((a, b) => a + b, 0);
-    // Se agarra como referencia el primer art para sacar la moneda
-    let primerArticulo = cartInfo.articles[0];
-    
-    document.getElementById("totalCompras").innerHTML = "USD " + total;
-    return total;
+    let total2 = 0;
+
+    for (let a of cartInfo.articles) {
+        
+        if(a.currency == "UYU") {
+            a.unitCost = a.unitCost/40;
+        } 
+        total2 += a.unitCost * a.count;
+    }
+
+    document.getElementById("totalCompras").innerHTML = "USD " + total2;
+    return total2;
     
 }
 
@@ -133,6 +141,29 @@ function calcularTotales(){
  return totalCompras + envio;
 
 }
+
+// entrega 6 ej 2
+function seleccionarMetodoDePago(metodoDePago) {
+
+    let span = document.getElementById("spMedioPago");
+    
+    if(metodoDePago == "tarjeta"){
+        document.getElementById("txtCuenta").disabled = true;
+        document.getElementById("txtTarjeta").disabled = false;
+        document.getElementById("txtFecha").disabled = false;
+        document.getElementById("txtCodigo").disabled = false;
+        span.innerHTML = "Tarjeta de débito/crédito";
+
+    } else {
+        document.getElementById("txtTarjeta").disabled = true;
+        document.getElementById("txtFecha").disabled = true;
+        document.getElementById("txtCodigo").disabled = true;
+        document.getElementById("txtCuenta").disabled = false;
+        span.innerHTML = "Transferencia bancaria";
+    }
+}
+
+
 
 
 

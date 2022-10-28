@@ -132,16 +132,22 @@
                         </table>
 
                         <hr>
+
+
                         
                         <div class="col-sm-12">
                           <p><h4>Forma de pago</h4></p>
-                          <span>No ha seleccionado</span>
+                          <span id="spMedioPago">No ha seleccionado</span>
                           <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
                             data-bs-target="#modalTerminos" id="terminosButton">Seleccionar</button>
                             <div class="invalid-feedback">
                               Debe seleccionar un metodo de pago.
                             </div>
                         </div>
+                         
+                        <br>
+ 
+                        <button type="button" class="col-12 btn btn-primary btn-lg btn-block">Finalizar compra</button>
 
                         <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
                           <div class="modal-dialog">
@@ -154,25 +160,25 @@
                                 <div class="container">
                                   <div class="row ">
                                     <div class="col-md-12">
-                                      <input type="radio" class="radio" name="pagos" id="credito" value="opcion1">
+                                      <input type="radio" class="radio" name="pagos" id="rbTarjeta" value="opcion1">
                                       <label for="html">Tarjeta de débito/crédito</label><br>    
                                     </div>
                                   </div>
                                       <hr>
                                       <div class="row ">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" placeholder="Número de la tarjeta" />
+                                            <input type="text" class="form-control" id="txtTarjeta" placeholder="Número de la tarjeta"/>
                                         </div>
                                      </div>
                                      <br>
                                       <div class="row ">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <span class="help-block text-muted small-font" ></span>
-                                            <input type="text" class="form-control" placeholder="MM/AA" />
+                                            <input type="text" class="form-control" id="txtFecha" placeholder="MM/AA" />
                                         </div>
                                        <div class="col-md-6 col-sm-6 col-xs-6">
                                             <span class="help-block text-muted small-font" ></span>
-                                            <input type="text" class="form-control" placeholder="CCV" />
+                                            <input type="text" class="form-control" id="txtCodigo" placeholder="CCV" />
                                         </div>
                                       </div>
                                       
@@ -180,33 +186,23 @@
                                       
                                       <div class="row ">
                                         <div class="col-md-12">
-                                          <input type="radio" class="radio" name="pagos" id="credito" value="opcion1">
+                                          <input type="radio" class="radio" name="pagos" id="rbTransferencia" value="opcion1">
                                           <label for="html">Trasnferencia bancaria</label><br>    
                                         </div>
                                       </div>
                                       <hr>
                                       <div class="row ">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" placeholder="Número de cuenta" />
+                                            <input type="text" class="form-control" id="txtCuenta" placeholder="Número de cuenta" />
                                         </div>
                                      </div>
-                                    
-                                    <br>
-
-                                    
-                                     <button type="button" class="btn btn-primary btn-sm">Comprar</button>
-                              
-
                                 </div>
 
                                   
 
                                   
 
-                                 
-              
-                        
-
+      
                               
                               
                             </div>
