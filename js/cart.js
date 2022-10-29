@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     }
  )}
  
- // entrega 6 ej 2
+ // entrega 6 ej 2 - Al seleccionar tarjeta o transferencia se agrega el evento para desahbilitar el que no fue seleccionado
  document.getElementById("rbTarjeta").addEventListener("change", function() {seleccionarMetodoDePago("tarjeta")});
  document.getElementById("rbTransferencia").addEventListener("change", function() {seleccionarMetodoDePago("transferencia")});
  
@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function(e){
    
 
 // entrega 5 ejercicio 1
+// Validacion de cantidades - entrega 6 ej 3
 
 function mostrarCarrito() {
 
@@ -77,7 +78,10 @@ function mostrarCarrito() {
                                     <td><b>${producto.name}</b></td>
                                     <td>
                                     <div class="row">
-                                        <input class="col-3" type="text" onkeyup="cantidadModificada(${producto.id})" id="cantidad_${producto.id}" value="${producto.count}">
+                                        <input class="col-3" type="number" min="1" onchange="cantidadModificada(${producto.id})" id="cantidad_${producto.id}" value="${producto.count}" required>
+                                        <div class="invalid-feedback">
+                                        La cantidad ingresada debe ser mayor a cero.
+                                      </div>
                                       </div>
                                     </td>
                                     <td>${producto.currency} ${producto.unitCost}</td>
@@ -143,6 +147,7 @@ function calcularTotales(){
 }
 
 // entrega 6 ej 2
+
 function seleccionarMetodoDePago(metodoDePago) {
 
     let span = document.getElementById("spMedioPago");
@@ -162,6 +167,82 @@ function seleccionarMetodoDePago(metodoDePago) {
         span.innerHTML = "Transferencia bancaria";
     }
 }
+
+
+// entrega 6  ej 3 - Funcion que se agrega para personalizar la validacion del formulario
+
+(function () {
+    'use strict'
+  
+    
+    let forms = document.querySelectorAll('.needs-validation')
+  
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            validarPagos();
+          
+          }
+          // Se agrega este else para que se muestre el mensaje de compra exitosa y luego recien borra el form
+          else{
+            event.preventDefault();
+            showAlertSuccess();
+            
+            
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+
+ // entrega  ej 3 - Funcion que busca campos y valida si estan vacios o no
+
+  function validarPagos(){
+    
+    let rbTarjeta= document.getElementById("rbTarjeta"); 
+    let rbTransferencia = document.getElementById("rbTransferencia"); 
+
+     if(rbTarjeta.checked) {
+        let txtTarjeta = document.getElementById("txtTarjeta"); 
+        let txtFecha = document.getElementById("txtFecha"); 
+        let txtCodigo = document.getElementById("txtCodigo");
+        
+        if(txtTarjeta.value == "" || txtFecha.value == "" || txtCodigo.value == ""){
+            document.getElementById("medioDePagoValidacion").innerHTML="Debe seleccionar un metodo de pago";
+        }
+
+     } else if (rbTransferencia.checked) {
+        let txtCuenta = document.getElementById("txtCuenta"); 
+        
+        if(txtCuenta.value == ""){
+            document.getElementById("medioDePagoValidacion").innerHTML="Debe seleccionar un metodo de pago";
+            
+        }
+     } else {
+        document.getElementById("medioDePagoValidacion").innerHTML="Debe seleccionar un metodo de pago";
+        
+     }
+
+  }
+
+
+//entrega 6 eje 3 Funciones que muestran y esconden mensaje de alerta
+
+function showAlertSuccess() {
+    document.getElementById("alert-success").classList.add("show");
+}
+
+
+function hideAlertSuccess() {
+    document.getElementById("alert-success").classList.remove("show");
+    document.getElementById("formulario").submit();
+}
+
+
 
 
 

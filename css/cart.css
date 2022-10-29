@@ -14,13 +14,18 @@ table tr th {
 }
 
 
-#calle{
-    width: 500px;
+#container{
+    width: 50%;
+    float: left;
+    padding-left: 0%;
 }
 
-#número{
-    width: 100px;
-}
-#esquina{
-    width: 500px;
-}
+.alert {
+    position: fixed;
+    top: 80px;
+    width: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+

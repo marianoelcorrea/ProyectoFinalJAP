@@ -56,6 +56,7 @@
                     
                     <div class="panel-body"> 
                         <div class="table-responsive">
+                          <form class="needs-validation" id="formulario" novalidate>
                         <table class="table">
                             <thead>
                             <tr>
@@ -87,68 +88,103 @@
                                     <td  class="text-right"><strong>Total</strong></td>
                                     <td id="total"></td>
                                 </tr>
-
+                        </table>
                               
                                 <!-- entrega 5 ej 2-->
-
+                              
+                                <table  class="table"> 
                                 <tr>
                                   <td colspan="8">&nbsp;</td>
                                  <tr>
                                     <td colspan="8"><h4>Tipo de envio</h4>
-                                      <form>
-                                        <input type="radio" class="radio" name="envios" id="Premium" value="15">
+                                      
+                                    
+                                        <input type="radio" class="radio" name="envios" id="Premium" value="15" required>
                                         <label for="html">Premium de 2 a 5 días (15%)</label><br>
+                                        
                                         <input type="radio" class="radio" name="envios"  id="Express" value="7">
                                         <label for="css">Express de 5 a 8 días (7%)</label><br>
                                         <input type="radio" class="radio" name="envios"  id="Standard" value="5">
                                         <label for="javascript">Standard de 12 a 15 días (5%)</label>
-                                      </form>
+                                        <div class="invalid-feedback">
+                                          Debe seleccionar un metodo de envio.
+                                        </div>
+                                        
+                                   
                                     </td>                                    
                                  </tr>
                                 </tr>
                                    
+                                 
+                               
                                 
-                                <td colspan="8"><h4>Dirección de envio</h4>
-                                  <form>
-                                    <label for="calle">Calle:</label><br>
-                                    <input type="text" class="form-control" id="calle"> <br>
+                               <td colspan="8"><h4>Dirección de envio</h4>
+                                 
+                              
+                                 <div class="container" id="container">
+                                  <div class="row">
+                                    <div class="col-12">               
+                                        
+                                      <label for="calle">Calle:</label><br>
+                                      <input type="text" class="form-control" id="calle" required> 
+                                      <div class="invalid-feedback">
+                                        Ingresa una calle.
+                                      </div>
+                                      <br>
 
-                                  
-                                    <label for="número">Número:</label><br> 
-                                    <input type="text" class="form-control" id="número"><br>
+                                      <div class="row">
+                                        <div class="col-4">
+                                          <label for="número">Número:</label><br> 
+                                          <input type="text" class="form-control" id="número" required>
+                                          <div class="invalid-feedback">
+                                            Ingresa un número.
+                                          </div>
+                                          <br>
+                                        </div>
+                                        <div class="col-8">
+                                          <label for="esquina">Esquina:</label><br>
+                                    <input type="text"  class="form-control" id="esquina" required>
+                                    <div class="invalid-feedback">
+                                      Ingresa una esquina.
+                                    </div>
+                                        </div>
+                                      </div>
 
-                                    <label for="esquina">Esquina:</label><br>
-                                    
-                                    <input type="text"  class="form-control" id="esquina">
+                                      
 
+                                    </div>
+                                  </div>
+                                 </div>
+                                
 
-                                  </form>
-
-
+            
 
                                   
                                 </td> 
  
-                        </table>
+                           </table>
 
-                        <hr>
+                         <hr>
 
 
                         
-                        <div class="col-sm-12">
+                         <div class="col-sm-12">
                           <p><h4>Forma de pago</h4></p>
                           <span id="spMedioPago">No ha seleccionado</span>
                           <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
-                            data-bs-target="#modalTerminos" id="terminosButton">Seleccionar</button>
+                            data-bs-target="#modalTerminos" id="btnMedioDePago">Seleccionar</button>
                             <div class="invalid-feedback">
                               Debe seleccionar un metodo de pago.
-                            </div>
+                            </div><br>
+                            <span class= "text-danger" id="medioDePagoValidacion"></span>
                         </div>
                          
                         <br>
  
-                        <button type="button" class="col-12 btn btn-primary btn-lg btn-block">Finalizar compra</button>
+                        <button class="col-12 btn btn-primary" type="submit">Finalizar compra</button>
 
+                        
+            
                         <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
@@ -167,18 +203,18 @@
                                       <hr>
                                       <div class="row ">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="txtTarjeta" placeholder="Número de la tarjeta"/>
+                                            <input type="text" class="form-control" id="txtTarjeta" placeholder="Número de la tarjeta"required/>
                                         </div>
                                      </div>
                                      <br>
                                       <div class="row ">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <span class="help-block text-muted small-font" ></span>
-                                            <input type="text" class="form-control" id="txtFecha" placeholder="MM/AA" />
+                                            <input type="text" class="form-control" id="txtFecha" placeholder="MM/AA" required/>
                                         </div>
                                        <div class="col-md-6 col-sm-6 col-xs-6">
                                             <span class="help-block text-muted small-font" ></span>
-                                            <input type="text" class="form-control" id="txtCodigo" placeholder="CCV" />
+                                            <input type="text" class="form-control" id="txtCodigo" placeholder="CCV" required/>
                                         </div>
                                       </div>
                                       
@@ -193,7 +229,7 @@
                                       <hr>
                                       <div class="row ">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" id="txtCuenta" placeholder="Número de cuenta" />
+                                            <input type="text" class="form-control" id="txtCuenta" placeholder="Número de cuenta" required />
                                         </div>
                                      </div>
                                 </div>
@@ -208,6 +244,10 @@
                             </div>
                           </div>
                         </div>
+
+                       
+
+                      </form>
 
 
 
@@ -241,6 +281,11 @@
       <div></div>
     </div>
   </div>
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>¡Has comprado con éxito!</p>
+    <button type="button" class="btn-close" onclick="hideAlertSuccess()" aria-label="Close"></button>
+  </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
