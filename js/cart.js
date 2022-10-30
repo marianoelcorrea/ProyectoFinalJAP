@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(e){
  });
 
 
- // entrega 6 ejercicio 1
+ // entrega 6 ejercicio 1 - Agrego evento click para seleccionar el envio
  let radioButtons = document.getElementsByClassName("radio");
 
  for(let button of radioButtons) {
@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function(e){
    
 
 // entrega 5 ejercicio 1
+
 // Validacion de cantidades - entrega 6 ej 3
 
 function mostrarCarrito() {
@@ -126,6 +127,7 @@ function calcularTotalCompras(){
     
 }
 
+//entrega 6 ej 1
 
 function calcularEnvios(){
   let totalCompras = calcularTotalCompras();
@@ -199,7 +201,7 @@ function seleccionarMetodoDePago(metodoDePago) {
       })
   })()
 
- // entrega  ej 3 - Funcion que busca campos y valida si estan vacios o no
+ // entrega 6  ej 3 - Funcion que busca campos y valida si estan vacios o no
 
   function validarPagos(){
     
