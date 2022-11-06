@@ -107,10 +107,11 @@ document.addEventListener("DOMContentLoaded", function(e){
 
      // Se obtiene el "a" agregado en index.html, quedando guardado en la variable emailNavBar - entrega 2
      let emailNavBar = document.getElementById("email");
-     // Se busca el valor (email) guardado anteriormente en localStorage en login.js - entrega 2 
-     let emailValor = window.localStorage.getItem("email");
-     // Se asigna al valor que se muestra en pantalla del "a" el email previamente guardado - entrega 2
-     emailNavBar.innerHTML = emailValor;
+     // Se busca la nueva variable usuario que se guardar en el localStorage - entrega 6 - ej 2
+     let usuarioString = window.localStorage.getItem("usuario");
+     let usuario = JSON.parse(usuarioString);
+  
+     emailNavBar.innerHTML = usuario.email;
 
      //Se agrega evento click al boton cerrar sesion - entrega 4 ej 2
    document.getElementById("cerrarSesion").addEventListener("click", function(){

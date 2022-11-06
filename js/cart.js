@@ -29,10 +29,12 @@ document.addEventListener("DOMContentLoaded", function(e){
     })
 
     let emailNavBar = document.getElementById("email");
+    
+    // Se busca la nueva variable usuario que se guardar en el localStorage - entrega 6 - ej 2
+    let usuarioString = window.localStorage.getItem("usuario");
+    let usuario = JSON.parse(usuarioString);
  
-    let emailValor = window.localStorage.getItem("email");
- 
-    emailNavBar.innerHTML = emailValor;
+    emailNavBar.innerHTML = usuario.email;
 
     //Se agrega evento click al boton cerrar sesion
    document.getElementById("cerrarSesion").addEventListener("click", function(){

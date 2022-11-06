@@ -14,12 +14,40 @@ function login() {
     } else {
         // se agrega variable de sesion para indicar que se logueo una persona
         window.sessionStorage.setItem("logueado", true);  
-        // se guarda el email del usuario que logro ingresar - entrega 2
-        window.localStorage.setItem("email", email);
+       // Busco si existe la lista de usuarios en el local storage - entrega 7 
+        let listaUsuariosString = window.localStorage.getItem("listaUsuarios");
+        // Se convierte de string del local storage a un array entrega 7
+        let listaUsuarios = JSON.parse(listaUsuariosString);
+        // Si es nulo se crea el array con la lista de usuarios - entrega 7
+            if(listaUsuarios == null){
+                listaUsuarios = new Array ();
+            }
+        // Se busca si existe un usuario con el correo dentro de la lista - entrega 7
+        let usuario = listaUsuarios.find(x => x.email == email);
+            if(usuario == null){
+        //Se crea el objeto para guardar en el local storage los datos del usuario - entrega 7  
+        usuario = {nombre: "", 
+        segundoNombre: "", 
+        apellido: "", 
+        segundoApellido: "", 
+        email: email, 
+        telefono: "", 
+        imgPerfil: ""};
+        // Se agrega un usuario a la lista de usuarios - entrega 7
+        listaUsuarios.push(usuario);
+            }
+        // Se guarda el usuario que se logueo como usuario actual en el local storage - entrega 7
+        let usuarioString = JSON.stringify(usuario);
+        window.localStorage.setItem("usuario", usuarioString);
+        // Se actualiza la lista de usuarios en el local storage - entrega 7
+        window.localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
+        
         // se redirecciona a index.html (pagina principal del sitio)
         window.location.href = "index.html";
    }
 }
+
+
 
 
 
