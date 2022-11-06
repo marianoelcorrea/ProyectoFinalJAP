@@ -59,11 +59,79 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
+    
+      <div class="container" id="container">
+        <br>
+        <h4>Perfil</h4>
+        <br>
+        <hr>
+     
+        <form action="#" method="get" class="row mt-4 needs-validation" novalidate>
+        <div class="row">
+          <div class="col-12">              
+            <div class="row">
+              <div class="col-6">
+                <label for="número">Primer nombre*</label><br> 
+                <input type="text" class="form-control"  placeholder="Gabriela" id="nombre" required>
+                <div class="invalid-feedback">
+                  Ingrese su nombre
+                </div>
+                <br>
+              </div>
+              <div class="col-6">
+                <label for="esquina">Segundo nombre</label><br>
+                <input type="text"  class="form-control" placeholder="Fernanda" id="segundoNombre">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="número">Primer apellido*</label><br> 
+                <input type="text" class="form-control"  placeholder="Diaz" id="apellido" required>
+                <div class="invalid-feedback">
+                  Ingrese su apellido.
+                </div>
+                <br>
+              </div>
+              <div class="col-6">
+                <label for="esquina">Segundo apellido</label><br>
+                <input type="text"  class="form-control" placeholder="Fagundez" id="segundoApellido">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="email" class="form-label">E-mail*</label><br> 
+                <input type="email" class="form-control" placeholder="ejemplo@gmail.com" id="email" required>
+                <div class="invalid-feedback">
+                  Ingrese su e-mail
+                </div>
+                <br>
+              </div>
+              <div class="col-6 custom-file">
+                <label class="custom-file-label" for="validatedCustomFile">Imagen de perfil</label><br>
+                <input type="file" class="custom-file-input" id="validatedCustomFile">
+              </div>
+             </div>
+              <div class="col-6">
+                <label for="esquina">Telefono de contacto*</label><br>
+                <input type="text"  class="form-control" placeholder="090 000 000" id="telefono" required>
+              <div class="invalid-feedback">
+              Ingresa su teléfono
+              </div>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+
+       <hr>
+       <br>
+       <button type="submit" class="btn btn-primary" id="buttonPerfil">Guardar cambios</button>  
+       
+       <br>
+        </form>
+      </div> 
+     
+
   </main>
   <footer class="text-muted">
     <div class="container">
