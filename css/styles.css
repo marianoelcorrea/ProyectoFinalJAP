@@ -206,3 +206,14 @@ a.custom-card:hover {
 .card {
   margin-right: 10px;
 }
+
+#fotoPerfil{
+  width: 100px;
+  height: 100px;
+  float: right;
+  border: rgb(182, 182, 182) solid  1px;
+}
+
+.row>* {
+  padding-right: calc(var(--bs-gutter-x) * .2) !important;
+}

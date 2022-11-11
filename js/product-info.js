@@ -102,9 +102,11 @@ function obtenerComentario() {
   };
   
   // Se agarra el email guardado en el localStorage al hacer login
-  let usuario = localStorage.getItem("email");
+  let usuario = localStorage.getItem("usuario");
+  let usuarioParse = JSON.parse(usuario);
   // Se le asigna el valor del usuario al comentario
-  comentario.user = usuario;
+  comentario.user = usuarioParse.email;
+  console.log(comentario.user);
   // Crea una fecha con tiempo y hora actual
   let fechaHora = new Date();
   // Se crea variable para sumarle 1 al mes asi se visualiza el mes actual

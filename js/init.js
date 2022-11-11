@@ -51,5 +51,4 @@ let cerrarSesion = function() {
   window.localStorage.removeItem("email");
  //Se direcciona a la pagina de login para que pueda volver a ingresar
   window.location.href = "login.html";
-
 }
