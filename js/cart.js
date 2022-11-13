@@ -173,15 +173,6 @@ function seleccionarMetodoDePago(metodoDePago) {
     }
 }
 
-/*
-document.getElementById("transfe").addEventListener("click",function(){
-    disable();
-     document.getElementById("ndetarjeta").value=""
-     document.getElementById("codigodeseg").value=""
-     document.getElementById("venc").value=""
-*/
-
-
 // entrega 6  ej 3 - Funcion que se agrega para personalizar la validacion del formulario
 
 (function () {

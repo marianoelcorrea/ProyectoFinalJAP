@@ -10,11 +10,12 @@ document.addEventListener("DOMContentLoaded", function(e){
     
    let emailNavBar = document.getElementById("email");
 
-   // Se busca la nueva variable usuario que se guardar en el localStorage - entrega 7 - ej 2
+   // Se busca la nueva variable usuario que se guardar en el localStorage y se asgina al campo email que se muestra en la barra de navegacion la propiedad email - entrega 7 - ej 1
    let usuarioString = window.localStorage.getItem("usuario");
    let usuario = JSON.parse(usuarioString);
-   llenarCamposForm(usuario);
    emailNavBar.innerHTML = usuario.email;
+   // Cuando se carga la pagina se llama esta funcion que carga los campos del form - entrega 7  ej 2
+   llenarCamposForm(usuario);
    
    //Se agrega evento click al boton cerrar sesion
    document.getElementById("cerrarSesion").addEventListener("click", function(){
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
     });
-  
+  // Funcion para las validaciones del form -  entrega 7  ej 1
     (function () {
         'use strict'
       
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(e){
                 event.preventDefault()
                 event.stopPropagation()
               } else {
-                // Se llama a la funcion cuando las validaciones estan ok
+                // Se llama a la funcion cuando las validaciones estan ok - entrega 7 ej 1
                 submitForm(); 
               }
       
@@ -46,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(e){
           })
       })()
 
-// Funcion que agarra los campos y le asigna los valores -  entrega 7
+// Funcion que agarra los campos y le asigna los valores -  entrega 7 ej 1
 function llenarCamposForm(usuario){
 
   document.getElementById("nombre").value = usuario.nombre;
@@ -58,7 +59,7 @@ function llenarCamposForm(usuario){
 
 }
 
-//Funcion que guarda los campos en el local storage - entrega 7
+//Funcion que guarda los campos en el local storage - entrega 7 - ej 3
 function submitForm(){
    // Se agarra el usuario del local storage
    let usuarioString = window.localStorage.getItem("usuario");
@@ -87,6 +88,8 @@ function submitForm(){
 }
  
 
+
+/*
 function getBase64Image(img) {
   var canvas = document.createElement("canvas");
   canvas.width = img.width;
@@ -98,4 +101,4 @@ function getBase64Image(img) {
   var dataURL = canvas.toDataURL("image/png");
 
   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
+}*/
