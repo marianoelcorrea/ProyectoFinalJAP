@@ -162,6 +162,7 @@ function seleccionarMetodoDePago(metodoDePago) {
         document.getElementById("txtFecha").disabled = false;
         document.getElementById("txtCodigo").disabled = false;
         span.innerHTML = "Tarjeta de débito/crédito";
+        
 
     } else {
         document.getElementById("txtTarjeta").disabled = true;
@@ -171,6 +172,14 @@ function seleccionarMetodoDePago(metodoDePago) {
         span.innerHTML = "Transferencia bancaria";
     }
 }
+
+/*
+document.getElementById("transfe").addEventListener("click",function(){
+    disable();
+     document.getElementById("ndetarjeta").value=""
+     document.getElementById("codigodeseg").value=""
+     document.getElementById("venc").value=""
+*/
 
 
 // entrega 6  ej 3 - Funcion que se agrega para personalizar la validacion del formulario
