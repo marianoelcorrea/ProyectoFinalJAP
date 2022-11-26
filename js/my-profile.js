@@ -56,8 +56,12 @@ function llenarCamposForm(usuario){
   document.getElementById("segundoApellido").value = usuario.segundoApellido;
   document.getElementById("emailForm").value = usuario.email;
   document.getElementById("telefono").value = usuario.telefono;
+  document.getElementById("fotoPerfil").src = usuario.imgPerfil;
+  var image = new Image();
+  image.src = usuario.imgPerfil;
+  document.body.appendChild(image);
 
-}
+} 
 
 //Funcion que guarda los campos en el local storage - entrega 7 - ej 3
 function submitForm(){
@@ -72,6 +76,10 @@ function submitForm(){
    usuario.segundoApellido = document.getElementById("segundoApellido").value;
    usuario.email = document.getElementById("emailForm").value;
    usuario.telefono = document.getElementById("telefono").value;
+   // deasfiate 7
+   let foto = document.getElementById("fotoPerfil");
+   // Se asigna el valor de la imagen convertida en texto al usuario que se guarda -  desafiate 7
+   usuario.imgPerfil = foto.src;
    
    // Obtengo la lisa de usuarios del LS
    let listaUsuariosString = window.localStorage.getItem("listaUsuarios");
@@ -87,18 +95,30 @@ function submitForm(){
   window.localStorage.setItem("listaUsuarios", JSON.stringify(listaUsuarios));
 }
  
+// Funcion que permmite convertir una imagen en base64 (formato de texto plano que permite almacenar un archivo) - desafiate 7
+let imgInput = document.getElementById('btnImgPerfil');
+imgInput.addEventListener('change', function (e) {
+    if (e.target.files) {
+        let imageFile = e.target.files[0];
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let img = document.createElement("img");
+            img.onload = function(event) {
+                  // Crea un canvas dinamicamente
+                  let canvas = document.createElement("canvas");
 
+                  let ctx = canvas.getContext("2d");
 
-/*
-function getBase64Image(img) {
-  var canvas = document.createElement("canvas");
-  canvas.width = img.width;
-  canvas.height = img.height;
+                  // Redimensiona la imagen
+                  ctx.drawImage(img, 0, 0, 300, 190);
 
-  var ctx = canvas.getContext("2d");
-  ctx.drawImage(img, 0, 0);
+                  // Muestra el resultado en el control de la imagen
+                  let dataurl = canvas.toDataURL(imageFile.type);
+                  document.getElementById("fotoPerfil").src = dataurl;
+            }
+            img.src = e.target.result;
+        }
+        reader.readAsDataURL(imageFile);
+    }
+});
 
-  var dataURL = canvas.toDataURL("image/png");
-
-  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}*/
